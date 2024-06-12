@@ -202,7 +202,9 @@ void mostrarFuncao(Jogador jogador) {
 void mostrarEstadoJogadores(Jogador jogadores[]) {
     int i;
     printf("\n\t_________________________________________");
+    printf("\n");
     printf("\n\t     Estado atual dos jogadores        ");
+    printf("\n");
     for (i = 0; i < NUM_JOGADORES; i++) {
         printf("\n\t%s - %s", jogadores[i].nome, jogadores[i].vivo ? "Vivo" : "Morto");
     }
@@ -221,7 +223,7 @@ int assassinar(Jogador jogadores[]) {
         printf("\n\t                                       ");
         printf("\n\t_________________________________________");
         printf("\n\t                                       ");
-        printf("\n\t   Lobo, em quem você quer assassinar? ");
+        printf("\n\t   Lobo, quem voce quer assassinar? ");
         printf("\n\t   (Escolha de 0 a %d)                 ", NUM_JOGADORES - 1);
         printf("\n\t                                       ");
         printf("\n\t_________________________________________");
@@ -241,7 +243,7 @@ void acaoMedico(Jogador jogadores[], int ataque_lobo, int* cura) {
     printf("\n\t                                       ");
     printf("\n\t_________________________________________");
     printf("\n\t                                        ");
-    printf("\n\t   Medico, em quem voce quer curar?     ");
+    printf("\n\t   Medico, quem voce quer curar?     ");
     printf("\n\t   (Escolha de 1 a %d ou -1 para)       ", NUM_JOGADORES - 1);
     printf("\n\t    nao curar                            "); 
     printf("\n\t_________________________________________");
@@ -257,39 +259,37 @@ void acaoMedico(Jogador jogadores[], int ataque_lobo, int* cura) {
 void acaoBruxa(Jogador jogadores[], int ataque_lobo, int* cura, int* mata) {
     clear_screen();
     char acao;
+
     printf("\n\t_________________________________________");
     printf("\n\t                                       ");
     printf("\n\t            ACAO DA BRUXA              ");
     printf("\n\t                                       ");
     printf("\n\t_________________________________________");
     printf("\n\t                                       ");
-    printf("\n\t   Bruxa, você tem as seguintes        ");
-    printf("\n\t   opções:                             ");
+    printf("\n\t   Bruxa, voce tem as seguintes        ");
+    printf("\n\t   opcoes:                             ");
     printf("\n\t   c - Curar um jogador                ");
     printf("\n\t   m - Matar um jogador                ");
-    printf("\n\t   n - Nenhuma acao.                   ");
-    printf("\n\t                                       ");
+    printf("\n\t   n - Nao fazer nada                  ");
     printf("\n\t_________________________________________");
     printf("\n\tDigite a sua escolha: ");
-    scanf("%s", &acao);
+    scanf(" %c", &acao);
 
     if (acao == 'c') {
         *cura = 1; 
     } else if (acao == 'm') {
         int alvo;
-        
         printf("\n\t                                       ");
         printf("\n\tEscolha quem voce deseja matar         ");
         printf("\n\t(0 a %d):                              ", NUM_JOGADORES - 1);
         printf("\n\t_________________________________________");
-        scanf("\n%d", &alvo);
-        
+        scanf("%d", &alvo);
+
         if (alvo >= 0 && alvo < NUM_JOGADORES && jogadores[alvo].vivo) {
             *mata = alvo;
         } else {
             *mata = -1;
         }
-        
     } else {
         *cura = 0;
         *mata = -1;
@@ -319,7 +319,7 @@ void aplicarAcoes(Jogador jogadores[], int ataque_lobo, int cura_medico, int aca
         jogadores[ataque_lobo].vivo = 0; 
     }
 
-    if (acao_bruxa_mata >= 0) {
+    if (acao_bruxa_mata >= 0 && acao_bruxa_mata < NUM_JOGADORES) {
         jogadores[acao_bruxa_mata].vivo = 0;
     }
 }
@@ -388,7 +388,7 @@ int verificarFimDoJogo(Jogador jogadores[]) {
         printf("\n\t\n");
         printf("\n\t             FIM DE JOGO               ");
         printf("\n\t\n");
-        printf("\n\t   A aldeia sobreviveu! Parabéns!     ");
+        printf("\n\t   A aldeia sobreviveu! Parabens!     ");
         printf("\n\t\n");
         printf("\n\t_______________________________________");
         sleep(10);
