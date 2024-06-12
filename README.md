@@ -42,3 +42,6 @@ O "Jogo do Lobo" é um jogo de estratégia e dedução onde os jogadores assumem
 5. **Continuar Jogando:**
    - O jogo continua alternando entre noite e dia até que o lobo seja eliminado ou todos os aldeões sejam devorados.
 
+Jogo desenvolvido pelas alunas:
+- Alana Gabrieli Cardoso
+- Letícia Campos
